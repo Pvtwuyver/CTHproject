@@ -1,17 +1,30 @@
 <!DOCTYPE html>
 <html>
     <head>
- 
-    
+  <link rel="stylesheet" href="project.css">
     </head>
-    	
-    <body>
+
+    <body class = "website" >
+
+      <section>
+         <h1 class = "h1"> Coding the Humanities </h1>
+         <h2 class = "h2"> Music based on your local weather conditions</h2>
+         <p class = "p" > Project made by Peter van Twuijver, Martijn Muller & Sophie Hutten</p>
+      </section>
+
+        <section class= "exp">
+             Insert your location and press 'Go!'
+      </section>
+
+    <section>
+<input type='text' id='searchValue' class = 'button' >
+<input type='button' id='link' value='Go!' onClick='javascript:getLocation()' class = 'button2' >
+    </section>
     
-    
-<input type='text' id='searchValue'>
-<input type='button' id='link' value='Search' onClick='javascript:getLocation()'>
-        
+<div spotifyFrame>  
+<iframe src="https://embed.spotify.com/?uri=spotify&theme=white" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>
         <script src="project.js"></script>
-        
-	</body>  
+</div>
+        </body>
+
 </html>

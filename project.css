@@ -1,0 +1,38 @@
+.website {
+ background-color: #F0F8FF;
+    font-size: 18px;
+    font-family: 'Verdana';
+    display: inline;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.h1 {
+    font-size: 25px;
+    color: #778899;
+}
+
+.h2 {
+    font-size: 25px;
+    color: #778899;
+}
+
+.p {
+    font-size: 10px;
+    color: #778899;
+
+}
+
+.button {
+    border: 5px solid #fff;
+    font-weight: bold;
+    font-size: 110%;
+    font-family: 'Verdana';
+
+}
+
+.button2 {
+     border: 5px solid #fff;
+     background-color: #fff;
+     font-size: 200%;
+}
