@@ -1,5 +1,5 @@
-var genre;
-var danceability;
+//var genre;
+//var danceability;
 
 function getLocation(){
    var location = document.getElementById('searchValue').value;
@@ -26,14 +26,26 @@ function getLocationdata(plaats){
                        
                        var temperatuur = dataParsed.main.temp;
                        var humidity = dataParsed.main.humidity;
-                       var rain = dataParsed.rain; // this is an object, not a value
-                       
+                       var wind = dataParsed.wind.speed;
+                       var wolken = dataParsed.weather[0].main;
+                     
                     var genre =  getTemperatuurdata(temperatuur);
                     var danceability = getHumiditydata(humidity);
+                    var tempo = getWindspeeddata(wind);
+                    var mood = getClouddata(wolken);
+                    
+                    var context = {temperatuur: temperatuur, luchtvochtigheid: humidity};
+                    console.log(context);
+                    var source   = $("#htmlweer").html();
+                    var template = Handlebars.compile(source);
+                    var html    = template(context);
+                    $("#weerhtml").append(html);
                    
-                   console.log("Humidity", humidity);
-                   console.log("Rain in ml afgelopen 3 uur", rain);
-                   getGenrendata (genre,danceability);
+                   console.log("Luchtvochtigheid is", humidity);
+                   //console.log("Rain in ml afgelopen 3 uur", rain);
+                   console.log("Windsnelheid is", wind);
+                   console.log("De lucht is", wolken);
+                   getGenrendata (genre,danceability,tempo,mood);
                    
                    } else {
                    console.log(myRequest.readyState);
@@ -43,30 +55,30 @@ function getLocationdata(plaats){
 }
 
 function getTemperatuurdata(graden){
-   console.log("graden:",graden);
+   console.log("graden in Kelvin:",graden);
        if (graden > 303){
            genre = ("tropical");
             return(genre);
        }else if (graden >293){
-           genre = ("beach");
+           genre = ("R&B");
            return(genre);
         }else if (graden >283){
-           genre = ("britpop");
+           genre = ("pop");
            return(genre);
         }else if (graden >273){
-           genre = ("dutch pop");
+           genre = ("acoustic");
            return(genre);   
         }else if (graden >263){
-           genre = ("dub");
+           genre = ("jazz");
            return(genre);   
         }else{
-           genre = ("russian folk");
+           genre = ("christmas");
            return(genre);
         }
 }
 
 function getHumiditydata(vocht){
-   console.log("vocht:",vocht);
+   
        if (vocht > 99){
            danceability = (0.75);
             return(danceability);
@@ -85,20 +97,57 @@ function getHumiditydata(vocht){
         }else{
            danceability = (0.5);
            return(danceability);
-        }        
+        } 
+        
+}       
+function getWindspeeddata(bries){
+   
+       if (bries > 18){
+           tempo = (150);
+            return(tempo);
+       }else if (bries >10){
+           tempo = (120);
+           return(tempo);
+        }else if (bries >7){
+           tempo = (110);
+           return(tempo);
+        }else if (bries >3){
+           tempo = (100);
+           return(tempo);   
+        }else if (bries >1){
+           tempo = (90);
+           return(tempo);   
+        }else{
+           tempo = (80);
+           return(tempo);
+        }                
 }
-
+function getClouddata(wolken){
+       if (wolken === "Clear"){
+           mood = ("relaxing");
+            return(mood);
+       }else if (wolken === "Clouds"){
+           mood = ("happy");
+           return(mood);
+        }else{
+           mood = ("romantic");
+           return(mood);
+        }                
+}
 // FROM HERE THE CODE REFERS TO ECHONEST-SPOTIYI API
 
-function getGenrendata(style,dansindex){
+function getGenrendata(style,dansindex,bpm,stemming){
    console.log("Muziekstyle is",style);
    console.log("Dansbaar index is",dansindex);
+   console.log("Tempo is max BPM:",bpm);
+   console.log("Stemming is:",stemming);
    
    var myRequest = new XMLHttpRequest();
 
    var method = "GET";
-   var url = "http://developer.echonest.com/api/v4/song/search?api_key=MQFDG7HXSGYE1CHUF&style="+style+"&min_danceability="+dansindex +"&min_tempo=140&results=15&sort=artist_familiarity-asc";
-
+   var url = "http://developer.echonest.com/api/v4/song/search?api_key=MQFDG7HXSGYE1CHUF&style="+style+"&min_danceability="+dansindex +"&max_tempo="+ bpm +"&mood="+stemming+"&results=15&sort=song_hotttnesss-desc";
+    
+    
    myRequest.open(method, url);
    myRequest.send();
 
@@ -109,8 +158,9 @@ function getGenrendata(style,dansindex){
                    console.log(myRequest.readyState);
                    console.log(dataParsed);
 
-                    var returnedPlaylist = dataParsed.response.songs;
-                      console.log("Returned Playlist is ", returnedPlaylist);
+                    var songId = dataParsed.response.songs[0].id;
+                      console.log("Returned Echonest ID is ", songId);
+                      getSpotifyid(songId);
                    } else {
                    console.log(myRequest.readyState);
                }
@@ -118,21 +168,43 @@ function getGenrendata(style,dansindex){
 
 }
 
-function getSpotify(){
-var http = new XMLHttpRequest();
-var url = "https://api.spotify.com/v1/users/pvtwuyver/playlists";
-http.open("POST", url, true);
-var accessToken = "bb62deaa06184c81a51403467925f1be";
-//Send the proper header information along with the request
-http.setRequestHeader("Content-Type", "application/json");
-http.setRequestHeader("Authorization", "Bearer " + "bb62deaa06184c81a51403467925f1be");
+function getSpotifyid(songId){
+    var echoNesturl = "http://developer.echonest.com/api/v4/song/profile?api_key=MQFDG7HXSGYE1CHUF&bucket=tracks&bucket=id%3Aspotify-WW&id="+ songId +"";
+    var myRequest = new XMLHttpRequest();
 
-var data = {"name": "Weather playlist", "public": false}
+   var method = "GET";
+   
+    
+   myRequest.open(method, echoNesturl);
+   myRequest.send();
 
-http.onreadystatechange = function() {//Call a function when the state changes.
-   if(http.readyState == 4 && http.status == 200) {
-       alert(http.responseText);
-   }
+   myRequest.onreadystatechange = function(){
+       if (myRequest.readyState === 4) {
+           var data = myRequest.response ;
+           var dataParsed = JSON.parse(data);
+           console.log(myRequest.readyState);
+           console.log(dataParsed);
+           
+           var spotifyId = dataParsed.response.songs[0].tracks[0].foreign_id;
+           console.log("Spotify ID is:", spotifyId);
+       }
+   };
 }
-http.send(JSON.stringify(data));
-}
+function createSpotifyplaylist(){
+           var http = new XMLHttpRequest();
+            var url = "https://api.spotify.com/v1/users/pvtwuyver/playlists";
+            http.open("POST", url, true);
+           var accessToken = "BQDLTUEcj9KKLpWVZQbCipFYU1r9Ju1kKjmwkGx9Jl2YmU4Q-I6uNofYhBJcQETfkaIHQ5ziGxrviLCpm-UEOWp9lZ0OtWup0fI76S_jjbM0be0NvgWPkFNf693pI5ZkXcFlKyVbpO-xDxWt1-wOFWDq1rTSZva58ZAncDbK1T5PSGLnQYsLPNnvkbv_7Nap0fk2xKKfnL-xDiyIqsbSwwHRBWBE-plQQxbaUQ";
+           // Send the proper header information along with the request
+           http.setRequestHeader("Content-Type", "application/json");
+           http.setRequestHeader("Authorization", "Bearer " + accessToken);
+            
+            var data = {"name": "Weather playlist", "public": false};
+            
+            http.onreadystatechange = function() {//Call a function when the state changes.
+               if(http.readyState == 4 && http.status == 200) {
+                   alert(http.responseText);
+               }
+            };
+            http.send(JSON.stringify(data));
+}    
