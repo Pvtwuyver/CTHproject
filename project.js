@@ -4,7 +4,7 @@
 function getLocation(){
    var location = document.getElementById('searchValue').value;
    getLocationdata(location);
-   document.getElementById("#htmlweer").innerHTML = "";
+   $('.entry').remove(); $('.musicsuggestion').remove();
    return(location);
 }
 function getLocationdata(plaats){

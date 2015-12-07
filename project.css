@@ -1,14 +1,14 @@
 .website {
  background-color: #F0F8FF;
-    font-size: 18px;
-     font-family: 'Oxygen', cursive;
-    display: inline;
+    
+    font-family: 'Oxygen', cursive;
+   
     margin-left: auto;
     margin-right: auto;
 }
 
 .h1 {
-    font-size: 25px;
+    font-size: 35px;
     color: #778899;
 }
 
