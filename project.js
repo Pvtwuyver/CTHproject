@@ -4,9 +4,9 @@
 function getLocation(){
    var location = document.getElementById('searchValue').value;
    getLocationdata(location);
+   document.getElementById("#htmlweer").innerHTML = "";
    return(location);
-   }
-
+}
 function getLocationdata(plaats){
    console.log(plaats);
    var myRequest = new XMLHttpRequest();
@@ -34,7 +34,7 @@ function getLocationdata(plaats){
                     var tempo = getWindspeeddata(wind);
                     var mood = getClouddata(wolken);
                     
-                    var context = {temperatuur: temperatuur, luchtvochtigheid: humidity};
+                    var context = {stemming: mood, snelheid: tempo, dansbaarheid: danceability, musicgenre: genre, city: plaats, temperatuur: (temperatuur-273).toFixed(2), luchtvochtigheid: humidity, windspeed: wind, sky: wolken};
                     console.log(context);
                     var source   = $("#htmlweer").html();
                     var template = Handlebars.compile(source);

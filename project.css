@@ -1,7 +1,7 @@
 .website {
  background-color: #F0F8FF;
     font-size: 18px;
-    font-family: 'Verdana';
+     font-family: 'Oxygen', cursive;
     display: inline;
     margin-left: auto;
     margin-right: auto;
@@ -35,4 +35,21 @@
      border: 5px solid #fff;
      background-color: #fff;
      font-size: 200%;
+}
+.entry {
+    font-family: 'Oxygen', cursive;
+    color: black;
+    position: absolute;
+    right: 30px;
+    top: 20%;
+    font-size: 20px;  
+}
+
+.musicsuggestion {
+   font-family: 'Lobster', cursive;
+   color: black;
+    position: absolute;
+    right: 30px;
+   bottom: 20%;
+    font-size: 20px;   
 }
