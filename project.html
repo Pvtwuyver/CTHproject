@@ -25,19 +25,19 @@
     </section>
     
 
-        <script src="project.js"></script>
+        
         <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"> </script>
-<div spotifyFrame>  
-            <iframe src="https://embed.spotify.com/?uri=spotify&theme=white" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>
-        </div>
+ 
+    <iframe src="" id="spotifyFrame" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>
+<input type='button' id='link' value='Next' onClick='javascript:nextSong()' class = 'button3' >
 
 <div id="weerhtml">
 
 <script id="htmlweer" type="text/x-handlebars-template">
   <div class="entry">
  <ul>   
-    <li><h>The temperature in {{city}} is: {{temperatuur}} degrees Celcius</h></li>
+    <li><h>The outside temperature in {{city}} is: {{temperatuur}} degrees Celcius</h></li>
     <li><h>The sky/cloud condition can be described as: {{sky}}  </h></li>
     <li><h>Winspeed is {{windspeed}} meters per second </h></li>
      <li><h>The humidity is {{luchtvochtigheid}} percent</h></li>
@@ -49,8 +49,9 @@
 </ul>  
     
   </div>
+  
 </script>
-
+<script src="project.js"></script>
     
 
         </body>

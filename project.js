@@ -1,7 +1,11 @@
 //var genre;
 //var danceability;
+var idArray = []; 
+var n=o;
 
 function getLocation(){
+    n=0;
+    idArray=[];
    var location = document.getElementById('searchValue').value;
    getLocationdata(location);
    $('.entry').remove(); $('.musicsuggestion').remove();
@@ -60,7 +64,7 @@ function getTemperatuurdata(graden){
            genre = ("tropical");
             return(genre);
        }else if (graden >293){
-           genre = ("R&B");
+           genre = ("dance");
            return(genre);
         }else if (graden >283){
            genre = ("pop");
@@ -129,6 +133,12 @@ function getClouddata(wolken){
        }else if (wolken === "Clouds"){
            mood = ("happy");
            return(mood);
+       }else if (wolken === "Drizzle"){
+           mood = ("sad");
+           return(mood);  
+       }else if (wolken === "Mist"){
+           mood = ("party");
+           return(mood);    
         }else{
            mood = ("romantic");
            return(mood);
@@ -145,7 +155,7 @@ function getGenrendata(style,dansindex,bpm,stemming){
    var myRequest = new XMLHttpRequest();
 
    var method = "GET";
-   var url = "http://developer.echonest.com/api/v4/song/search?api_key=MQFDG7HXSGYE1CHUF&style="+style+"&min_danceability="+dansindex +"&max_tempo="+ bpm +"&mood="+stemming+"&results=15&sort=song_hotttnesss-desc";
+   var url = "http://developer.echonest.com/api/v4/song/search?api_key=MQFDG7HXSGYE1CHUF&style="+style+"&min_danceability="+dansindex +"&max_tempo="+ bpm +"&mood="+stemming+"&results=20&sort=song_hotttnesss-desc";
     
     
    myRequest.open(method, url);
@@ -158,10 +168,16 @@ function getGenrendata(style,dansindex,bpm,stemming){
                    console.log(myRequest.readyState);
                    console.log(dataParsed);
 
-                    var songId = dataParsed.response.songs[0].id;
-                      console.log("Returned Echonest ID is ", songId);
-                      getSpotifyid(songId);
-                   } else {
+                    //var songId = dataParsed.response.songs[0].id;
+                    for (var i=0; i < 19; i++){
+                        var songId = dataParsed.response.songs[i].id;
+                        console.log("Returned Echonest IDs zijn ", songId);
+                        getSpotifyid(songId);
+                    }
+                    
+                   console.log("KLAAR!!!!") ; 
+                   showPlaylist(idArray[n]);
+                } else {
                    console.log(myRequest.readyState);
                }
            };
@@ -173,22 +189,33 @@ function getSpotifyid(songId){
     var myRequest = new XMLHttpRequest();
 
    var method = "GET";
-   
-    
-   myRequest.open(method, echoNesturl);
+ 
+   myRequest.open(method, echoNesturl, false);
    myRequest.send();
-
-   myRequest.onreadystatechange = function(){
+   var spotifyId;
+   
        if (myRequest.readyState === 4) {
            var data = myRequest.response ;
            var dataParsed = JSON.parse(data);
-           console.log(myRequest.readyState);
-           console.log(dataParsed);
-           
-           var spotifyId = dataParsed.response.songs[0].tracks[0].foreign_id;
-           console.log("Spotify ID is:", spotifyId);
-       }
-   };
+          
+            if (dataParsed.response.songs[0].tracks[0] !== undefined){
+                if (dataParsed.response.songs[0].tracks[0].foreign_id !== undefined)
+                //console.log("Spotify Id's", dataParsed.response.songs[0].tracks[0].foreign_id);
+                idArray.push( dataParsed.response.songs[0].tracks[0].foreign_id);
+                //console.log("idArray", idArray);
+            }
+        } 
+}
+
+function nextSong(){
+    n=n+1;
+    showPlaylist(idArray[n]);
+}
+
+function showPlaylist(spotifyId){
+    var playlist = document.getElementById('spotifyFrame');
+    console.log("playlist", playlist);
+    playlist.src ="https://embed.spotify.com/?uri="+spotifyId+"&theme=white";
 }
 function createSpotifyplaylist(){
            var http = new XMLHttpRequest();
