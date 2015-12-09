@@ -7,49 +7,52 @@
         <link rel="stylesheet" href="project.css">
     </head>
 
-    <body class = "website" >
-
+    <div class = "website" >
       <section>
-         <h1 class = "h1"> The Weather Playlist Generator </h1>
-         <h2 class = "h2"> Music based on your local weather conditions</h2>
+         <h1 class = "h1"> The Weather Based Music Generator </h1>
+         <h2 class = "h2"> Tracks that suit your local weather conditions perfectly</h2>
          <p class = "p" > Project made by Peter van Twuijver, Martijn Muller & Sophie Hutten</p>
       </section>
+    </div>
+    
+<div class="widget">
 
-        <section class= "exp">
+<section class= "exp">
              Insert your location and press 'Go!'
-      </section>
-
-    <section>
-<input type='text' id='searchValue' class = 'button' >
-<input type='button' id='link' value='Go!' onClick='javascript:getLocation()' class = 'button2' >
-    </section>
-    
-
+     </section>
+        <section>
+    <input type='text' id='searchValue' class = 'button' >
+    <input type='button' id='link' value='Go!' onClick='javascript:getLocation()' class = 'button2' >
+        </section>
         
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"> </script>
- 
-    <iframe src="" id="spotifyFrame" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>
-<input type='button' id='link' value='Next' onClick='javascript:nextSong()' class = 'button3' >
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"> </script>
+     
+        <iframe src="https://lundstrj.files.wordpress.com/2011/11/spotify-4.png" id="spotifyFrame" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>
+    <div class="buttons">
+        	        <ul>
+            	        <li><button type="button" class="btn btn-primary" button name="button3" onclick= "previousSong()">Previous song</button></li>
+        	            <li><button type="button" class="btn btn-primary" button name="button4" onclick= "nextSong()">Next song</button></li>
+        	        </ul> 
+</div>
 <div id="weerhtml">
+    <script id="htmlweer" type="text/x-handlebars-template">
 
-<script id="htmlweer" type="text/x-handlebars-template">
-  <div class="entry">
- <ul>   
-    <li><h>The outside temperature in {{city}} is: {{temperatuur}} degrees Celcius</h></li>
-    <li><h>The sky/cloud condition can be described as: {{sky}}  </h></li>
-    <li><h>Winspeed is {{windspeed}} meters per second </h></li>
-     <li><h>The humidity is {{luchtvochtigheid}} percent</h></li>
-    </div> 
-  <div class="musicsuggestion"
+    <div class="entry">
+          
+        <li><h>The outside temperature in {{city}} is: {{temperatuur}} degrees Celcius</li></h>
+        <li><h>The sky/cloud condition can be described as: {{sky}} </li> </h>
+        <li><h>Winspeed is {{windspeed}} meters per second </li></h>
+         <li><h>The humidity is {{luchtvochtigheid}} percent</li></h>
         
-     <li><h> Based on these wheatherconditions, we suggest the following music: </h></li>
-     <li><h> {{musicgenre}} music with a {{stemming}} style, with max {{snelheid}} beats per minute and a danceability rate of {{dansbaarheid}}.</h></li>
-</ul>  
-    
-  </div>
-  
+    </div> 
+    <div class="musicsuggestion">
+    <ul>
+     <h> Based on these wheatherconditions, we suggest the following music: </li>
+     <h> {{musicgenre}} music with a {{stemming}} style, with max {{snelheid}} beats per minute and a danceability rate of {{dansbaarheid}}.</li>
+    </ul>  
+    </div>
+ </div> 
 </script>
 <script src="project.js"></script>
     

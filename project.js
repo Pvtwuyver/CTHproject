@@ -211,7 +211,10 @@ function nextSong(){
     n=n+1;
     showPlaylist(idArray[n]);
 }
-
+function previousSong(){
+    n=n-1;
+    showPlaylist(idArray[n]);
+}
 function showPlaylist(spotifyId){
     var playlist = document.getElementById('spotifyFrame');
     console.log("playlist", playlist);

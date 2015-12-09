@@ -1,12 +1,17 @@
 .website {
  background-color: #F0F8FF;
-    
+    text-align: center;
     font-family: 'Oxygen', cursive;
-   
     margin-left: auto;
     margin-right: auto;
 }
-
+.widget {
+    background-color: #F0F8FF;
+   text-align: center;
+    font-family: 'Oxygen', cursive;
+    margin-left: auto;
+    margin-right: auto; 
+}
 .h1 {
     font-size: 35px;
     color: #778899;
@@ -24,6 +29,7 @@
 }
 
 .button {
+    
     border: 5px solid #fff;
     font-weight: bold;
     font-size: 110%;
@@ -38,18 +44,29 @@
 }
 .entry {
     font-family: 'Oxygen', cursive;
+    text-align: left;
     color: black;
     position: absolute;
-    right: 30px;
-    top: 20%;
-    font-size: 20px;  
+    left: 5%;
+    right: 10px;
+    top: 50%;
+    font-size: 15px;  
 }
 
 .musicsuggestion {
+    text-align: left;
+    border: 10px;
    font-family: 'Lobster', cursive;
    color: black;
-    position: absolute;
-    right: 30px;
-   bottom: 20%;
-    font-size: 20px;   
+   position: absolute;
+   left: 70%;
+   right: 5%;
+   top: 50%;
+   font-size: 20px;   
 }
+.buttons li {
+    text-align: center;
+    position: relative;
+    display: inline;
+}
+  
