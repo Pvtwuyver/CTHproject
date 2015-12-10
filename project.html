@@ -6,7 +6,7 @@
        <link href='https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="project.css">
     </head>
-
+<body class = "body">
     <div class = "website" >
       <section>
          <h1 class = "h1"> The Weather Based Music Generator </h1>
@@ -31,9 +31,13 @@
         <iframe src="https://lundstrj.files.wordpress.com/2011/11/spotify-4.png" id="spotifyFrame" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>
     <div class="buttons">
         	        <ul>
-            	        <li><button type="button" class="btn btn-primary" button name="button3" onclick= "previousSong()">Previous song</button></li>
-        	            <li><button type="button" class="btn btn-primary" button name="button4" onclick= "nextSong()">Next song</button></li>
+            	        <li><button type="button" class="btn btn-success" button name="button3" onclick= "previousSong()">Previous song</button></li>
+        	            <li><button type="button" class="btn btn-success" button name="button4" onclick= "nextSong()">Next song</button></li>
         	        </ul> 
+     <p class = "credits">
+         Powered by <a href="http://spotify.com"> Spotify </a>, <a href= "http://openweathermap.org"> OpenWeatherMap </a> and <a href= "http://the.echonest.com"> The Echo Nest </a>
+     </p>   	        
+        	        
 </div>
 <div id="weerhtml">
     <script id="htmlweer" type="text/x-handlebars-template">
@@ -57,6 +61,6 @@
 <script src="project.js"></script>
     
 
-        </body>
+</body>
 
 </html>

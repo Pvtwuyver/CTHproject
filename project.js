@@ -64,14 +64,23 @@ function getTemperatuurdata(graden){
            genre = ("tropical");
             return(genre);
        }else if (graden >293){
-           genre = ("dance");
+           genre = ("reggae");
            return(genre);
+       }else if (graden >288){
+           genre = ("reggaeton");
+           return(genre);      
         }else if (graden >283){
            genre = ("pop");
            return(genre);
-        }else if (graden >273){
+        }else if (graden >280){
+           genre = ("dance");
+           return(genre);     
+        }else if (graden >278){
            genre = ("acoustic");
-           return(genre);   
+           return(genre); 
+        }else if (graden >273){
+           genre = ("rock");
+           return(genre);     
         }else if (graden >263){
            genre = ("jazz");
            return(genre);   
@@ -84,22 +93,22 @@ function getTemperatuurdata(graden){
 function getHumiditydata(vocht){
    
        if (vocht > 99){
-           danceability = (0.75);
+           danceability = (0.8);
             return(danceability);
        }else if (vocht >75){
-           danceability = (0.7);
+           danceability = (0.75);
            return(danceability);
         }else if (vocht >50){
-           danceability = (0.6);
+           danceability = (0.7);
            return(danceability);
         }else if (vocht >25){
-           danceability = (0.3);
+           danceability = (0.65);
            return(danceability);   
         }else if (vocht >1){
-           danceability = (0.4);
+           danceability = (0.63);
            return(danceability);   
         }else{
-           danceability = (0.5);
+           danceability = (0.6);
            return(danceability);
         } 
         
@@ -155,7 +164,7 @@ function getGenrendata(style,dansindex,bpm,stemming){
    var myRequest = new XMLHttpRequest();
 
    var method = "GET";
-   var url = "http://developer.echonest.com/api/v4/song/search?api_key=MQFDG7HXSGYE1CHUF&style="+style+"&min_danceability="+dansindex +"&max_tempo="+ bpm +"&mood="+stemming+"&results=20&sort=song_hotttnesss-desc";
+   var url = "http://developer.echonest.com/api/v4/song/search?api_key=MQFDG7HXSGYE1CHUF&style="+style+"&min_danceability="+dansindex +"&max_tempo="+ bpm +"&mood="+stemming+"&results=20";
     
     
    myRequest.open(method, url);
