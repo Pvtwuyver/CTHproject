@@ -1,22 +1,17 @@
 .body {
-    background-image:
-    linear-gradient(
-    black, darkgreen
-    );
+    background-image: linear-gradient( black, darkgreen);
 }
-
 .website {
- 
     text-align: center;
     font-family: 'Oxygen', cursive;
     margin-left: auto;
     margin-right: auto;
 }
 .widget {
-   text-align: center;
+    text-align: center;
     font-family: 'Oxygen', cursive;
     margin-left: auto;
-    margin-right: auto; 
+    margin-right: auto;
 }
 .exp {
     font-size: 20px;
@@ -26,31 +21,24 @@
     font-size: 35px;
     color: #FFFFFF;
 }
-
 .h2 {
     font-size: 25px;
     color: #FFFFFF;
 }
-
 .p {
     font-size: 10px;
     color: #FFFFFF;
-
 }
-
 .button {
-    
     border: 5px solid #fff;
     font-weight: bold;
     font-size: 110%;
     font-family: 'Oxygen';
-
 }
-
 .button2 {
-     border: 5px solid #fff;
-     background-color: #fff;
-     font-size: 110%;
+    border: 5px solid #fff;
+    background-color: #fff;
+    font-size: 110%;
 }
 .entry {
     font-family: 'Oxygen', cursive;
@@ -60,23 +48,21 @@
     left: 5%;
     right: 10px;
     top: 50%;
-    font-size: 15px;  
+    font-size: 15px;
 }
-
 .musicsuggestion {
     text-align: left;
     border: 10px;
-   font-family: 'Lobster', cursive;
-   color: #FFFFFF;
-   position: absolute;
-   left: 70%;
-   right: 5%;
-   top: 50%;
-   font-size: 20px;   
+    font-family: 'Lobster', cursive;
+    color: #FFFFFF;
+    position: absolute;
+    left: 70%;
+    right: 5%;
+    top: 50%;
+    font-size: 20px;
 }
 .buttons li {
     text-align: center;
     position: relative;
     display: inline;
 }
-  
